@@ -13,6 +13,11 @@ class SocketService {
   private serverUrl: string;
 
   constructor() {
+    const configuredServerUrl = import.meta.env.VITE_SOCKET_SERVER_URL?.trim();
+    if (configuredServerUrl) {
+      this.serverUrl = configuredServerUrl.replace(/\/$/, '');
+      return;
+    }
     // Port 4000 par défaut pour le backend Node.js
     const isDev = window.location.port === '5173' || window.location.port === '5174';
     this.serverUrl = isDev 
