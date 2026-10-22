@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gothic-950 text-slate-100 antialiased font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+}
+
+/* Animations et effets d'ambiance */
+@keyframes fogFloat {
+  0% { transform: translateX(-3%) translateY(0); }
+  100% { transform: translateX(3%) translateY(-8px); }
+}
+
+.animate-fog {
+  animation: fogFloat 18s ease-in-out infinite alternate;
+}
+
+/* Défilement personnalisé gothique */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070a12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23304d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "loups-garous-game",
+  "version": "1.0.0",
+  "description": "Jeu web multijoueur temps réel 'Les Loups-Garous' avec ambiance gothique et orchestration serveur complète",
+  "private": true,
+  "scripts": {
+    "install:all": "npm.cmd --prefix server install && npm.cmd --prefix client install",
+    "dev:server": "npm.cmd --prefix server run dev",
+    "dev:client": "npm.cmd --prefix client run dev",
+    "dev": "npm.cmd run dev:server",
+    "test": "npm.cmd --prefix server test",
+    "build": "npm.cmd --prefix server run build && npm.cmd --prefix client run build"
+  },
+  "keywords": [
+    "werewolf",
+    "loups-garous",
+    "multiplayer",
+    "socket.io",
+    "react",
+    "typescript"
+  ],
+  "author": "Antigravity Senior Full-Stack Engineer",
+  "license": "MIT"
+}
