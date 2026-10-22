@@ -26,22 +26,9 @@ export class MySQLDatabase {
       const password = process.env.MYSQL_PASSWORD || '';
       const database = process.env.MYSQL_DATABASE || 'if0_43237247_loups_garous';
 
-      // 1. Connexion initiale pour créer la base de données si elle n'existe pas encore
-      const tempConnection = await mysql.createConnection({
-        host,
-        port,
-        user,
-        password
-      });
-
-      await tempConnection.query(`
-        CREATE DATABASE IF NOT EXISTS \`${database}\` 
-        CHARACTER SET utf8mb4 
-        COLLATE utf8mb4_unicode_ci;
-      `);
-      await tempConnection.end();
-
-      // 2. Création du pool persistant avec la base de données sélectionnée
+      // Les hébergeurs gérés (notamment InfinityFree) ne donnent pas le droit
+      // CREATE DATABASE. La base doit donc être créée avant le déploiement.
+      // On se connecte directement à la base configurée.
       this.pool = mysql.createPool({
         host,
         port,
@@ -53,7 +40,7 @@ export class MySQLDatabase {
         queueLimit: 0
       });
 
-      // 3. Création automatique des tables si nécessaires
+      // Création automatique des tables si nécessaires
       await this.ensureTables();
       this.isConnected = true;
       console.log(`🐬 Connecté avec succès à MySQL / XAMPP (Base: ${database} sur port ${port})`);
